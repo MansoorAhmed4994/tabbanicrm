@@ -23,7 +23,7 @@
         "nesbot/carbon": "^2.55",
         "league/omnipay": "^3.2",
         "pusher/pusher-php-server": "^7.0",
-        "guzzlehttp/guzzle": "^7.4",
+        "guzzlehttp/guzzle": "^7.4.5",
         "twilio/sdk": "^6.32",
         "illuminate/collections": "^8.77"
     }
