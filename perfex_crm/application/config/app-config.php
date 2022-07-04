@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 * environments.
 *
 */
-define('APP_BASE_URL', 'https://tabbanicrm.desenador.com/perfex_crm/');
+define('APP_BASE_URL', 'https://localhost/tabbanicrm/perfex_crm/');
 
 /*
 * --------------------------------------------------------------------------
@@ -32,7 +32,7 @@ define('APP_BASE_URL', 'https://tabbanicrm.desenador.com/perfex_crm/');
 *
 * Auto added on install
 */
-define('APP_ENC_KEY', 'e947676bca2c11796fde61b43f0903c6');
+define('APP_ENC_KEY', 'f13b33ec2a68c8fc09fd25a6df3e0178');
 
 /**
  * Database Credentials
@@ -42,15 +42,15 @@ define('APP_DB_HOSTNAME', 'localhost');
 /**
  * The username used to connect to the database
  */
-define('APP_DB_USERNAME', 'desenado_mansoor');
+define('APP_DB_USERNAME', 'root');
 /**
  * The password used to connect to the database
  */
-define('APP_DB_PASSWORD', 'Mansoor1@3');
+define('APP_DB_PASSWORD', '');
 /**
  * The name of the database you want to connect to
  */
-define('APP_DB_NAME', 'desenado_tabbani_crm');
+define('APP_DB_NAME', 'database');
 
 /**
  * @since  2.3.0
