@@ -15,7 +15,9 @@
     "grunt-postcss": "^0.8.0",
     "grunt-replace": "^1.0.1",
     "pixrem": "^3.0.2",
-    "postcss": "^6.0.23"
+    "postcss": "^7.0.36"
   },
-  "dependencies": {}
+  "dependencies": {
+  "postcss": "^7.0.36"
+}
 }
