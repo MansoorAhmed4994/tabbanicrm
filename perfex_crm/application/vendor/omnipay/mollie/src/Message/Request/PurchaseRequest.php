@@ -119,23 +119,6 @@ class PurchaseRequest extends AbstractMollieRequest
     /**
      * @return string
      */
-    public function getCardToken()
-    {
-        return $this->getParameter('cardToken');
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setCardToken($value)
-    {
-        return $this->setParameter('cardToken', $value);
-    }
-
-    /**
-     * @return string
-     */
     public function getInclude()
     {
         return $this->getParameter('include');
@@ -200,10 +183,6 @@ class PurchaseRequest extends AbstractMollieRequest
         
         if ($mandateId = $this->getMandateId()) {
             $data['mandateId'] = $mandateId;
-        }
-
-        if ($cardToken = $this->getCardToken()) {
-            $data['cardToken'] = $cardToken;
         }
 
         return $data;

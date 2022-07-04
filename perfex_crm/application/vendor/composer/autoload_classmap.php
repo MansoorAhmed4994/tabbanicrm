@@ -43,7 +43,6 @@ return array(
     'HTMLPurifier_HTMLModule_HTML5_Text' => $vendorDir . '/xemlock/htmlpurifier-html5/library/HTMLPurifier/HTMLModule/HTML5/Text.php',
     'Omnipay\\Omnipay' => $vendorDir . '/omnipay/common/src/Omnipay.php',
     'PDF417' => $vendorDir . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
-    'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
     'QRcode' => $vendorDir . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
     'RecursiveCallbackFilterIterator' => $vendorDir . '/studio-42/elfinder/php/elFinderVolumeLocalFileSystem.class.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',

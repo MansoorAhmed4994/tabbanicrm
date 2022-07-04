@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 * environments.
 *
 */
-define('APP_BASE_URL', 'https://localhost/tabbanicrm/perfex_crm/');
+define('APP_BASE_URL', 'http://wh1070150.ispot.cc/tabanicrm/perfex_crm/');
 
 /*
 * --------------------------------------------------------------------------
@@ -32,7 +32,7 @@ define('APP_BASE_URL', 'https://localhost/tabbanicrm/perfex_crm/');
 *
 * Auto added on install
 */
-define('APP_ENC_KEY', 'f13b33ec2a68c8fc09fd25a6df3e0178');
+define('APP_ENC_KEY', 'dc84e66466f092fc98c168df08288e27');
 
 /**
  * Database Credentials
@@ -42,15 +42,15 @@ define('APP_DB_HOSTNAME', 'localhost');
 /**
  * The username used to connect to the database
  */
-define('APP_DB_USERNAME', 'root');
+define('APP_DB_USERNAME', 'tabanire_mansoor');
 /**
  * The password used to connect to the database
  */
-define('APP_DB_PASSWORD', '');
+define('APP_DB_PASSWORD', 'Mansoor1@3');
 /**
  * The name of the database you want to connect to
  */
-define('APP_DB_NAME', 'database');
+define('APP_DB_NAME', 'tabanire_tabani_crm');
 
 /**
  * @since  2.3.0
