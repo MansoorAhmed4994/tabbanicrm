@@ -260,6 +260,7 @@ class Leads_model extends App_Model
 
         $data['address'] = trim($data['address']);
         $data['address'] = nl2br($data['address']);
+        $data['project'] = trim($data['project']);
 
         $data['email'] = trim($data['email']);
 

@@ -210,6 +210,7 @@ class App
      */
     public function get_table_data($table, $params = [])
     {
+        
         $params = hooks()->apply_filters('table_params', $params, $table);
 
         foreach ($params as $key => $val) {
@@ -234,6 +235,8 @@ class App
 
         include_once($path);
 
+        // echo 'wom';
+        // return json_encode($output);
         echo json_encode($output);
         die;
     }

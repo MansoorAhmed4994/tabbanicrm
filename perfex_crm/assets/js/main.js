@@ -2827,6 +2827,7 @@ function initDataTable(selector, url, notsearchable, notsortable, fnserverparams
             "url": url,
             "type": "POST",
             "data": function (d) {
+                //console.log(d); 
                 if (typeof (csrfData) !== 'undefined') {
                     d[csrfData['token_name']] = csrfData['hash'];
                 }

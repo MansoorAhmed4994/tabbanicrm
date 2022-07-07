@@ -49,9 +49,16 @@ class Leads extends AdminController
 
     public function table()
     {
+       
         if (!is_staff_member()) {
             ajax_access_denied();
         }
+        //  echo 'wyfgho';
+        // return 'work';
+        // echo 'work';
+        // echo '<pre>';
+        // print_r($this->app->get_table_data('leads'));
+        // return;
         $this->app->get_table_data('leads');
     }
 

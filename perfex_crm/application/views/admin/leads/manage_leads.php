@@ -228,30 +228,39 @@
                                     'th_attrs'=>array('id'=>'th-consent', 'class'=>'not-export')
                                  );
                               }
+                                
                               $_table_data[] = array(
-                               'name'=>_l('lead_company'),
-                               'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-company')
-                              );
+                                'name'=>_l('project'),
+                                'th_attrs'=>array('class'=>'project toggleable','id'=>'th-project')
+                              ); 
+                              $_table_data[] = array(
+                                'name'=>_l('Next Reminder'),
+                                'th_attrs'=>array('class'=>'next-reminder toggleable','id'=>'th-next-reminder')
+                              ); 
+                            //   $_table_data[] = array(
+                            //   'name'=>_l('lead_company'),
+                            //   'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-company')
+                            //   );
                               $_table_data[] =   array(
                                'name'=>_l('leads_dt_email'),
                                'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-email')
-                              );
+                              ); 
                               $_table_data[] =  array(
                                'name'=>_l('leads_dt_phonenumber'),
                                'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-phone')
-                              );
-                              $_table_data[] =  array(
-                                 'name'=>_l('leads_dt_lead_value'),
-                                 'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-lead-value')
-                                );
-                              $_table_data[] =  array(
-                               'name'=>_l('tags'),
-                               'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-tags')
                               );
                               $_table_data[] = array(
                                'name'=>_l('leads_dt_assigned'),
                                'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-assigned')
                               );
+                            //   $_table_data[] =  array(
+                            //      'name'=>_l('leads_dt_lead_value'),
+                            //      'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-lead-value')
+                            //     );
+                            //   $_table_data[] =  array(
+                            //   'name'=>_l('tags'),
+                            //   'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-tags')
+                            //   );
                               $_table_data[] = array(
                                'name'=>_l('leads_dt_status'),
                                'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-status')
@@ -260,14 +269,18 @@
                                'name'=>_l('leads_source'),
                                'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-source')
                               );
-                              $_table_data[] = array(
-                               'name'=>_l('leads_dt_last_contact'),
-                               'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-last-contact')
-                              );
+                            //   $_table_data[] = array(
+                            //   'name'=>_l('leads_dt_last_contact'),
+                            //   'th_attrs'=>array('class'=>'toggleable', 'id'=>'th-last-contact')
+                            //   );
                               $_table_data[] = array(
                                 'name'=>_l('leads_dt_datecreated'),
                                 'th_attrs'=>array('class'=>'date-created toggleable','id'=>'th-date-created')
                               );
+                            //   $_table_data[] = array(
+                            //     'name'=>_l('leads_no_of_call_log'),
+                            //     'th_attrs'=>array('class'=>'no-of-calls toggleable','id'=>'th-no-of-calls')
+                            //   );
                               foreach($_table_data as $_t){
                                array_push($table_data,$_t);
                               }
@@ -276,6 +289,7 @@
                               array_push($table_data,$field['name']);
                               }
                               $table_data = hooks()->apply_filters('leads_table_columns', $table_data);
+                              
                               render_datatable($table_data,'leads',
                               array('customizable-table'),
                               array(
@@ -285,7 +299,8 @@
                                )); ?>
                         </div>
                      </div>
-                     <?php } ?>
+                     <?php 
+                     } ?>
                   </div>
                </div>
             </div>

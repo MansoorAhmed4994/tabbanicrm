@@ -30,6 +30,7 @@ class Authentication extends App_Controller
 
     public function admin()
     {
+        
         if (is_staff_logged_in()) {
             redirect(admin_url());
         }
@@ -40,13 +41,14 @@ class Authentication extends App_Controller
             $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
         }
         if ($this->input->post()) {
+            
             if ($this->form_validation->run() !== false) {
                 $email    = $this->input->post('email');
                 $password = $this->input->post('password', false);
                 $remember = $this->input->post('remember');
 
                 $data = $this->Authentication_model->login($email, $password, $remember, true);
-
+                
                 if (is_array($data) && isset($data['memberinactive'])) {
                     set_alert('danger', _l('admin_auth_inactive_account'));
                     redirect(admin_url('authentication'));

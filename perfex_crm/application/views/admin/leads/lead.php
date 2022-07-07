@@ -56,15 +56,16 @@
                         </a>
                      </li>
                      <?php } ?>
-                     <li role="presentation">
-                        <a href="#tab_proposals_leads" onclick="initDataTable('.table-proposals-lead', admin_url + 'proposals/proposal_relations/' + <?php echo $lead->id; ?> + '/lead','undefined', 'undefined','undefined',[6,'desc']);" aria-controls="tab_proposals_leads" role="tab" data-toggle="tab">
-                        <?php echo _l('proposals'); 
-                        if($total_proposals > 0){
-                           echo ' <span class="badge">'.$total_proposals.'</span>';
-                        }
+                     <!--<li role="presentation">-->
+                     <!--   <a href="#tab_proposals_leads" onclick="initDataTable('.table-proposals-lead', admin_url + 'proposals/proposal_relations/' + <?php echo $lead->id; ?> + '/lead','undefined', 'undefined','undefined',[6,'desc']);" aria-controls="tab_proposals_leads" role="tab" data-toggle="tab">-->
+                        <?php 
+                        // echo _l('proposals'); 
+                        // if($total_proposals > 0){
+                        //   echo ' <span class="badge">'.$total_proposals.'</span>';
+                        // }
                         ?>
-                        </a>
-                     </li>
+                     <!--   </a>-->
+                     <!--</li>-->
                      <li role="presentation">
                         <a href="#tab_tasks_leads" onclick="init_rel_tasks_table(<?php echo $lead->id; ?>,'lead','.table-rel-tasks-leads');" aria-controls="tab_tasks_leads" role="tab" data-toggle="tab">
                         <?php echo _l('tasks');

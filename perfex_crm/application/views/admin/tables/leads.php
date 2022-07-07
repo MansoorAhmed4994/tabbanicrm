@@ -17,15 +17,24 @@ $aColumns = [
 if (is_gdpr() && $consentLeads == '1') {
     $aColumns[] = '1';
 }
-$aColumns = array_merge($aColumns, ['company',
-    db_prefix() . 'leads.email as email',
+$aColumns = array_merge($aColumns, [
+    // 'company',
+    db_prefix() . 'leads.email as email', 
+    
+    // db_prefix() . 'leads.project as project',
+    // $GLOBALS['current_user']
+    '(SELECT `tblprojects`.`name` FROM `tblprojects` WHERE `tblprojects`.id = tblleads.id) as project ',
+    
+    '(SELECT `tblreminders`.`date` FROM `tblreminders` where `tblreminders`.`rel_id` = tblleads.id ORDER by `tblreminders`.`id` desc) as remineders',
+    
+    
     db_prefix() . 'leads.phonenumber as phonenumber',
-    'lead_value',
-    '(SELECT GROUP_CONCAT(name SEPARATOR ",") FROM ' . db_prefix() . 'taggables JOIN ' . db_prefix() . 'tags ON ' . db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id WHERE rel_id = ' . db_prefix() . 'leads.id and rel_type="lead" ORDER by tag_order ASC LIMIT 1) as tags',
+    // 'lead_value',
+    // '(SELECT GROUP_CONCAT(name SEPARATOR ",") FROM ' . db_prefix() . 'taggables JOIN ' . db_prefix() . 'tags ON ' . db_prefix() . 'taggables.tag_id = ' . db_prefix() . 'tags.id WHERE rel_id = ' . db_prefix() . 'leads.id and rel_type="lead" ORDER by tag_order ASC LIMIT 1) as tags',
     'firstname as assigned_firstname',
     db_prefix() . 'leads_status.name as status_name',
     db_prefix() . 'leads_sources.name as source_name',
-    'lastcontact',
+    // 'lastcontact',
     'dateadded',
 ]);
 
@@ -56,8 +65,8 @@ if ($this->ci->input->post('custom_view')) {
         array_push($where, 'AND junk = 1');
     } elseif ($filter == 'not_assigned') {
         array_push($where, 'AND assigned = 0');
-    } elseif ($filter == 'contacted_today') {
-        array_push($where, 'AND lastcontact LIKE "' . date('Y-m-d') . '%"');
+    // } elseif ($filter == 'contacted_today') {
+    //     array_push($where, 'AND lastcontact LIKE "' . date('Y-m-d') . '%"');
     } elseif ($filter == 'created_today') {
         array_push($where, 'AND dateadded LIKE "' . date('Y-m-d') . '%"');
     } elseif ($filter == 'public') {
@@ -109,7 +118,9 @@ $additionalColumns = hooks()->apply_filters('leads_table_additional_columns_sql'
 ]);
 
 $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, $additionalColumns);
-
+// echo '<pre>';
+// print_r($result);
+// echo 'noth1234';
 $output  = $result['output'];
 $rResult = $result['rResult'];
 
@@ -153,16 +164,14 @@ foreach ($rResult as $aRow) {
         }
         $row[] = $consentHTML;
     }
-    $row[] = $aRow['company'];
+    $row[] = $aRow['project'];
+    $row[] = $aRow['remineders'];
+    
+    // $row[] = $aRow['company'];
 
     $row[] = ($aRow['email'] != '' ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '');
 
     $row[] = ($aRow['phonenumber'] != '' ? '<a href="tel:' . $aRow['phonenumber'] . '">' . $aRow['phonenumber'] . '</a>' : '');
-
-    $base_currency = get_base_currency();
-    $row[] = ($aRow['lead_value'] != 0 ? app_format_money($aRow['lead_value'],$base_currency->symbol) : '');
-
-    $row[] .= render_tags($aRow['tags']);
 
     $assignedOutput = '';
     if ($aRow['assigned'] != 0) {
@@ -177,6 +186,15 @@ foreach ($rResult as $aRow) {
     }
 
     $row[] = $assignedOutput;
+
+    // $base_currency = get_base_currency();
+    // $row[] = ($aRow['lead_value'] != 0 ? app_format_money($aRow['lead_value'],$base_currency->symbol) : '');
+
+    
+    
+    // $row[] .= render_tags($aRow['tags']);
+
+    
 
     if ($aRow['status_name'] == null) {
         if ($aRow['lost'] == 1) {
@@ -212,7 +230,7 @@ foreach ($rResult as $aRow) {
 
     $row[] = $aRow['source_name'];
 
-    $row[] = ($aRow['lastcontact'] == '0000-00-00 00:00:00' || !is_date($aRow['lastcontact']) ? '' : '<span data-toggle="tooltip" data-title="' . _dt($aRow['lastcontact']) . '" class="text-has-action is-date">' . time_ago($aRow['lastcontact']) . '</span>');
+    // $row[] = ($aRow['lastcontact'] == '0000-00-00 00:00:00' || !is_date($aRow['lastcontact']) ? '' : '<span data-toggle="tooltip" data-title="' . _dt($aRow['lastcontact']) . '" class="text-has-action is-date">' . time_ago($aRow['lastcontact']) . '</span>');
 
     $row[] = '<span data-toggle="tooltip" data-title="' . _dt($aRow['dateadded']) . '" class="text-has-action is-date">' . time_ago($aRow['dateadded']) . '</span>';
 

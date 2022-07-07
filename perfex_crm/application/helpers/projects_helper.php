@@ -29,6 +29,28 @@ function get_project_tabs_admin()
     return get_instance()->app_tabs->get_project_tabs();
 }
 
+ function get_all_projects($id='1')
+{
+    return hooks()->apply_filters('all_projects', get_instance()->db->order_by('name', 'asc')->get(db_prefix().'projects')->result_array());
+    
+    // if (empty($id) && isset($GLOBALS['project'])) {
+    //     return $GLOBALS['project'];
+    // }
+
+    // // Client global object not set
+    // if (empty($id)) {
+    //     return null;
+    // }
+
+    // if (!class_exists('projects_model', false)) {
+    //     get_instance()->load->model('projects_model');
+    // }
+
+    // $project = get_instance()->projects_model->get($id);
+
+    // return $project;
+}
+
 /**
  * Init the default project tabs
  * @return null

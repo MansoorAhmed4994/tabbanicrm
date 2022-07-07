@@ -109,6 +109,10 @@
         <?php echo _l('update_proposal_email_no'); ?>
       </a>
    </div>
+   
+   
+   <!--edit-->
+   
    <?php } ?>
    <?php echo form_open((isset($lead) ? admin_url('leads/lead/'.$lead->id) : admin_url('leads/lead')),array('id'=>'lead_form')); ?>
    <div class="row">
@@ -141,6 +145,9 @@
             <p class="bold font-medium-xs"><?php echo (isset($lead) && $lead->state != '' ? $lead->state : '-') ?></p>
             <p class="text-muted lead-field-heading"><?php echo _l('lead_country'); ?></p>
             <p class="bold font-medium-xs"><?php echo (isset($lead) && $lead->country != 0 ? get_country($lead->country)->short_name : '-') ?></p>
+            <p class="text-muted lead-field-heading"><?php echo _l('Project'); ?></p>
+            <p class="bold font-medium-xs"><?php echo (isset($lead) && $lead->project != '' || $lead->project != 0 ? get_project($lead->project)->name : '-') ?></p>
+            
             <p class="text-muted lead-field-heading"><?php echo _l('lead_zip'); ?></p>
             <p class="bold font-medium-xs"><?php echo (isset($lead) && $lead->zip != '' ? $lead->zip : '-') ?></p>
          </div>
@@ -174,6 +181,8 @@
                   }
                   ?>
             </p>
+            <p class="text-muted lead-field-heading"><?php echo _l('lead_add_edit_lead_rating'); ?></p>
+            <p class="bold font-medium-xs mbot15"><?php echo (isset($lead) && $lead->lead_rating != '' ? $lead->lead_rating : '-') ?></p>
             <p class="text-muted lead-field-heading"><?php echo _l('leads_dt_datecreated'); ?></p>
             <p class="bold font-medium-xs"><?php echo (isset($lead) && $lead->dateadded != '' ? '<span class="text-has-action" data-toggle="tooltip" data-title="'._dt($lead->dateadded).'">' . time_ago($lead->dateadded) .'</span>' : '-') ?></p>
             <p class="text-muted lead-field-heading"><?php echo _l('leads_dt_last_contact'); ?></p>
@@ -334,8 +343,13 @@
                   <?php } ?>
                </select>
             </div>
+            <?php
+             $projects = get_all_projects();  
+              $selected =( isset($lead) ? $lead->project : 1);
+               echo render_select( 'project',$projects,array( 'id',array( 'name')), 'Project',$selected,array('data-none-selected-text'=>_l('dropdown_non_selected_tex')));
+               ?>
             <?php } ?>
-         </div>
+         </div> 
          <div class="col-md-12">
             <?php $value = (isset($lead) ? $lead->description : ''); ?>
             <?php echo render_textarea('description','lead_description',$value); ?>
@@ -368,6 +382,10 @@
          <div class="clearfix"></div>
       </div>
    </div>
+   
+   
+   
+   
    <?php if(isset($lead)){ ?>
    <div class="lead-latest-activity lead-view">
       <div class="lead-info-heading">

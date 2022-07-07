@@ -13,6 +13,10 @@
     <?php render_admin_js_variables(); ?>
 
     <script>
+    setInterval(function () {
+  if(alert('Your session has expired!')){}
+  else    window.location.reload(); 
+}, 7200000);
         var totalUnreadNotifications = <?php echo $current_user->total_unread_notifications; ?>,
         proposalsTemplates = <?php echo json_encode(get_proposal_templates()); ?>,
         contractsTemplates = <?php echo json_encode(get_contract_templates()); ?>,

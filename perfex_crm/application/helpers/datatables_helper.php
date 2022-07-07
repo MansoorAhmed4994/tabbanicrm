@@ -15,6 +15,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where = [], $additionalSelect = [], $sGroupBy = '', $searchAs = [])
 {
+    
+    
     $CI          = & get_instance();
     $__post      = $CI->input->post();
     $havingCount = '';
@@ -48,6 +50,7 @@ function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where 
     /*
      * Ordering
      */
+     
     $nullColumnsAsLast = get_null_columns_that_should_be_sorted_as_last();
 
     $sOrder = '';
@@ -212,9 +215,10 @@ function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where 
     }
 
     $join = implode(' ', $join);
-
+    // echo '<pre>';print_r(implode(', ', $_aColumns));
+// echo '<pre>';print_r('SELECT SQL_CALC_FOUND_ROWS ' . str_replace(' , ', ' ', implode(', ', $_aColumns)) . ' ' . $_additionalSelect );
     $sQuery = '
-    SELECT SQL_CALC_FOUND_ROWS ' . str_replace(' , ', ' ', implode(', ', $_aColumns)) . ' ' . $_additionalSelect . "
+    SELECT SQL_CALC_FOUND_ROWS ' .  implode(', ', $_aColumns). ' ' . $_additionalSelect . "
     FROM $sTable
     " . $join . "
     $sWhere
@@ -223,6 +227,7 @@ function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where 
     $sOrder
     $sLimit
     ";
+    // return $sQuery;
 
     $rResult = $CI->db->query($sQuery)->result_array();
 
@@ -231,7 +236,7 @@ function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where 
         'limit' => $sLimit,
         'order' => $sOrder,
     ]);
-
+// return $rResult;
     /* Data set length after filtering */
     $sQuery = '
     SELECT FOUND_ROWS()
